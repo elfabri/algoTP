@@ -72,16 +72,16 @@ export default class MyMap<T extends (string | number), V> {
     }
 
     moveThings(idx: number): void {
-        if (idx >= 0 && idx < this.len - 2) {
+        if (idx >= 0 && idx < this.len - 1) {
             // general case
             for (let i = idx + 1; i < this.len; i++) {
                 let tmp = this.tab[i];
                 this.tab[i-1] = tmp;
             }
-            this.tab[this.len-1].key = -1 as T;
+            this.tab.pop();
         } else if ((idx === 0 && this.len === 1) ||  // last remaining element
                   idx === this.len - 1) {  // last element on list
-            this.tab[0].key = -1 as T;
+            this.tab.pop();
         }
     }
 
